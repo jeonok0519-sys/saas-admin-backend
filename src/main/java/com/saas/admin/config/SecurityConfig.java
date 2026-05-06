@@ -45,14 +45,15 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList(
-            "http://localhost:5173", 
-            "http://localhost:3000",
-            "https://saas-admin-frontend.onrender.com"
-        ));
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
-        configuration.setAllowedHeaders(Arrays.asList("*"));
+        // 允许所有来源（生产环境）
+        configuration.addAllowedOriginPattern("*");
+        // 允许所有HTTP方法
+        configuration.addAllowedMethod("*");
+        // 允许所有请求头
+        configuration.addAllowedHeader("*");
+        // 允许携带凭证
         configuration.setAllowCredentials(true);
+        // 预检请求缓存时间
         configuration.setMaxAge(3600L);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
