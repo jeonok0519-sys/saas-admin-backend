@@ -1,0 +1,18 @@
+package com.saas.admin.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class PageResponse<T> {
+    private List<T> records;
+    private long total;
+    private int size;
+    private int current;
+    private int pages;
+}
